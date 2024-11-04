@@ -1,0 +1,20 @@
+<h2>Lista de Productos</h2>
+<hr>
+<ul id="productos"></ul>
+
+<script>
+const ulProductos = document.getElementById("productos")
+
+const cargaDatos = async () => {
+    let respuesta = await fetch("/api/products", {})
+    let datos = await respuesta.json()
+    datos.productos.forEach(p => {
+        let liProducto = document.createElement("li")
+        liProducto.textContent = p.title
+        ulProductos.append(liProducto)
+    })
+
+}
+
+cargaDatos()
+</script>
